@@ -54,7 +54,7 @@ npm install
 # Install Python dependencies
 pip install -r server/requirements.txt
 
-# Download the default higher-accuracy English model
+# Download the default accurate English model (~1.8 GB)
 cd server
 python download_model.py
 ```
@@ -63,14 +63,24 @@ python download_model.py
 
 | Key | Model | Size |
 |-----|-------|------|
-| `en-us-lgraph` | Higher-accuracy English (US) — **default** | model-dependent |
+| `en-us-0.22` | Accurate generic English (US) — **default** | ~1.8 GB |
+| `en-us-0.42-gigaspeech` | Highest published English accuracy; needs up to 16 GB RAM | ~2.3 GB |
+| `en-us-lgraph` | Higher-accuracy English with lower memory use | ~128 MB |
 | `en-us-0.15` | Small English (US) | ~40 MB |
-| `en-us-0.22` | Large English (US) — higher accuracy | ~1.8 GB |
 | `en-in-0.5` | Small English (India) | ~36 MB |
 | `hi-0.22` | Small Hindi | ~42 MB |
 | `fr-0.22` | Small French | ~41 MB |
 | `de-0.21` | Small German | ~45 MB |
 | `es-0.42` | Small Spanish | ~39 MB |
+
+The UI model names describe the Vosk model configured for the server. The
+server loads one model at startup; to change it, stop the server and run the
+downloader with the matching key, then start the server again. For example:
+
+```bash
+python download_model.py --model en-us-0.42-gigaspeech
+python vosk_server.py
+```
 
 Download a different model:
 ```bash

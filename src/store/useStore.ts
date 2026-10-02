@@ -50,7 +50,7 @@ export const DEFAULT_SETTINGS: Settings = {
 export const useStore = create<State>((set, get) => ({
   settings: DEFAULT_SETTINGS,
   language: "English",
-  model: "Vosk Higher Accuracy (en-us lgraph)",
+  model: "Vosk Accurate (en-us 0.22)",
   deviceId: "default",
   source: "record",
   connection: "disconnected",

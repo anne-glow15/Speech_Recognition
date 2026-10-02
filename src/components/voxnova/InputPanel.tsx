@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 
 const LANGS = ["English", "Tamil", "Hindi", "Telugu", "Spanish", "French", "German"];
 const MODELS = [
+  "Vosk Accurate (en-us 0.22)",
+  "Vosk Highest Accuracy (en-us 0.42 Gigaspeech)",
   "Vosk Higher Accuracy (en-us lgraph)",
   "Vosk Small (en-us 0.15)",
   "Vosk Small (en-in 0.4)",

@@ -3,7 +3,7 @@
 Download and extract a Vosk model for VoxNova.
 
 Usage:
-    python download_model.py                         # downloads the default small English model
+    python download_model.py                         # downloads the default accurate English model
     python download_model.py --model en-us-0.22      # downloads the large English model
     python download_model.py --list                  # shows available model shortcuts
 
@@ -23,9 +23,15 @@ from pathlib import Path
 
 # Curated model list — add more from https://alphacephei.com/vosk/models
 MODELS = {
+    # The 0.22 big model is the best accuracy/requirements trade-off for a
+    # typical desktop.  It is static-vocabulary, but has a substantially lower
+    # published WER than the small and lgraph variants.
+    "en-us-0.22":   ("vosk-model-en-us-0.22",         "https://alphacephei.com/vosk/models/vosk-model-en-us-0.22.zip"),
+    # Highest published English accuracy in the Vosk catalogue, but requires
+    # a large download and up to 16 GB RAM at runtime.
+    "en-us-0.42-gigaspeech": ("vosk-model-en-us-0.42-gigaspeech", "https://alphacephei.com/vosk/models/vosk-model-en-us-0.42-gigaspeech.zip"),
     "en-us-lgraph": ("vosk-model-en-us-0.22-lgraph", "https://alphacephei.com/vosk/models/vosk-model-en-us-0.22-lgraph.zip"),
     "en-us-0.15":   ("vosk-model-small-en-us-0.15",   "https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip"),
-    "en-us-0.22":   ("vosk-model-en-us-0.22",         "https://alphacephei.com/vosk/models/vosk-model-en-us-0.22.zip"),
     "en-in-0.5":    ("vosk-model-small-en-in-0.4",    "https://alphacephei.com/vosk/models/vosk-model-small-en-in-0.4.zip"),
     "hi-0.22":      ("vosk-model-small-hi-0.22",       "https://alphacephei.com/vosk/models/vosk-model-small-hi-0.22.zip"),
     "fr-0.22":      ("vosk-model-small-fr-0.22",       "https://alphacephei.com/vosk/models/vosk-model-small-fr-0.22.zip"),
@@ -33,7 +39,7 @@ MODELS = {
     "es-0.42":      ("vosk-model-small-es-0.42",       "https://alphacephei.com/vosk/models/vosk-model-small-es-0.42.zip"),
 }
 
-DEFAULT_MODEL = "en-us-lgraph"
+DEFAULT_MODEL = "en-us-0.22"
 
 
 def progress_hook(block_num: int, block_size: int, total_size: int):
